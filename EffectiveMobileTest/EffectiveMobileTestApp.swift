@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct EffectiveMobileTestApp: App {
+    @StateObject var networkManager = NetworkServiceManager()
+    @StateObject var cartManager = CartManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoadingPage()
+                .environmentObject(networkManager)
+                .environmentObject(cartManager)
         }
     }
 }
