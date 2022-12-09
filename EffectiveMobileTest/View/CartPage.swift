@@ -46,7 +46,8 @@
                          .padding(.top, 26)
 
                      Button {
-                         print("Checkout")
+                         self.presentationMode.wrappedValue.dismiss()
+                         
                      } label: {
                          HStack {
                              Text("Checkout")

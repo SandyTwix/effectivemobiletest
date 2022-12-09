@@ -16,7 +16,7 @@
 
              Spacer()
 
-             DetailsProductView()
+             DetailsProductView(showStrokeBorder: .constant(false), showSplash: .constant(false), showSplashTilted: .constant(false), showHeart: .constant(false), onTap: {print("")})
          }
          .padding(.top, 79)
          .ignoresSafeArea()
@@ -328,10 +328,16 @@
      @EnvironmentObject var cartManager: CartManager
      let width: CGFloat = UIScreen.main.bounds.width
      let tabs: [String] = ["Shop", "Details", "Features"]
-     @State private var tabsSelectedIndex: String = "Shop"
+     @State private var tabsSelectedIndex: String = "Details"
      @State private var colorSelectedIndex: String = "772D03"
      @State private var capacitySelectedIndex: String = "126"
      @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+     
+     @Binding var showStrokeBorder: Bool
+     @Binding var showSplash: Bool
+     @Binding var showSplashTilted: Bool
+     @Binding var showHeart: Bool
+     var onTap: () -> Void
 
      private let parametrs: [Category] = [
          Category(id: 0, image: "cpu", text: ""),
@@ -347,9 +353,10 @@
                      .font(.custom(mainFont500, size: 24))
                      .foregroundColor(Color.mainDarkBlue)
                      .padding(.leading, 38)
-
+                 
                  Spacer()
-
+                 
+                 
                  Button {
                      print("Like")
                  } label: {
@@ -362,22 +369,21 @@
                  .background(Color.mainDarkBlue)
                  .cornerRadius(10)
                  .padding(.trailing, 37)
-
              }
              .padding(.top, 28)
-
+             
              HStack(spacing: 0) {
                  ForEach(0 ..< 5) { index in
                      prodicrRaiting(index: index + 1, raiting: networkManager.productCartModels.first?.rating ?? 0.0)
                          .frame(width: 18, height: 18)
                          .foregroundColor(Color.mainYellow)
                  }
-
+                 
                  Spacer()
              }
              .padding(.top, 7)
              .padding(.leading, 38)
-
+             
              HStack(spacing: 0) {
                  ForEach(tabs, id: \.self) { index in
                      TabsView(isActive: tabsSelectedIndex == index, text: index)
@@ -388,7 +394,7 @@
              }
              .padding(.top, 30)
              .padding(.horizontal, 26)
-
+             
              VStack(spacing: 0) {
                  HStack(alignment: .center, spacing: 0) {
                      ForEach(parametrs, id: \.id) { index in
@@ -399,17 +405,17 @@
                  .padding(.trailing, 40)
              }
              .padding(.top, 25)
-
+             
              HStack(spacing: 0) {
                  Text("Select color and capacity")
                      .font(.custom(mainFont500, size: 16))
                      .foregroundColor(Color.mainDarkBlue)
                      .padding(.leading, 25)
-
+                 
                  Spacer()
              }
              .padding(.top, 29)
-
+             
              HStack(spacing: 0) {
                  ForEach(networkManager.productCartModels.first?.color ?? [], id: \.self) { index in
                      ColorView(isActive: colorSelectedIndex == index, color: index)
@@ -418,10 +424,10 @@
                              colorSelectedIndex = index
                          }
                  }
-
-
+                 
+                 
                  Spacer()
-
+                 
                  ForEach(networkManager.productCartModels.first?.capacity ?? [], id: \.self) { index in
                      CapacityView(isActive: capacitySelectedIndex == index, text: index)
                          .padding(.trailing, 20.64)
@@ -433,7 +439,7 @@
              .padding(.leading, 34.57)
              .padding(.trailing, 60)
              .padding(.top, 14.71)
-
+             
              Button {
                  cartManager.onIncrement(product: product)
                  self.presentationMode.wrappedValue.dismiss()
@@ -443,9 +449,9 @@
                          .font(.custom(mainFont700, size: 20))
                          .foregroundColor(Color.white)
                          .padding(.leading, 45)
-
+                     
                      Spacer()
-                     bestSeller.priceWithoutDiscount
+                     
                      Text("$\(networkManager.productCartModels.first?.price ?? 0)")
                          .font(.custom(mainFont700, size: 20))
                          .foregroundColor(Color.white)
@@ -457,7 +463,7 @@
              .background(Color.mainOrange)
              .cornerRadius(10)
              .padding(.top, 27)
-
+             
              Spacer()
          }
          .frame(width: width, height: 471)
