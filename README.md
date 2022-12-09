@@ -9,4 +9,4 @@
 
 ## Видео работы конечного приложения
 
-<video src='Simulator Screen Recording - iPhone 14 Pro - 2022-12-09 at 12.44.19.mp4 width=180/>
+<video src="imulator Screen Recording - iPhone 14 Pro - 2022-12-09 at 12.44.19.mp4" with=180></video>
