@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D192ECD294317C600E6F34C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D192ECC294317C600E6F34C /* Assets.xcassets */; };
 		2D78F4E72942143B00BE80C7 /* EffectiveMobileTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78F4E62942143B00BE80C7 /* EffectiveMobileTestApp.swift */; };
-		2D78F4EB2942143D00BE80C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D78F4EA2942143D00BE80C7 /* Assets.xcassets */; };
 		2D78F4EE2942143D00BE80C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D78F4ED2942143D00BE80C7 /* Preview Assets.xcassets */; };
 		2D78F4F62942154600BE80C7 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78F4F52942154600BE80C7 /* CartManager.swift */; };
 		2D78F4F82942157600BE80C7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78F4F72942157600BE80C7 /* Category.swift */; };
@@ -37,9 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D192ECC294317C600E6F34C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D78F4E32942143B00BE80C7 /* EffectiveMobileTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EffectiveMobileTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D78F4E62942143B00BE80C7 /* EffectiveMobileTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectiveMobileTestApp.swift; sourceTree = "<group>"; };
-		2D78F4EA2942143D00BE80C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D78F4ED2942143D00BE80C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2D78F4F52942154600BE80C7 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		2D78F4F72942157600BE80C7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -102,9 +102,9 @@
 				2D78F5042942172A00BE80C7 /* View */,
 				2D78F5012942169F00BE80C7 /* ViewModel */,
 				2D78F517294219ED00BE80C7 /* Helpers */,
-				2D78F4EA2942143D00BE80C7 /* Assets.xcassets */,
 				2D78F4E62942143B00BE80C7 /* EffectiveMobileTestApp.swift */,
 				2D78F529294222D700BE80C7 /* Info.plist */,
+				2D192ECC294317C600E6F34C /* Assets.xcassets */,
 				2D78F4EC2942143D00BE80C7 /* Preview Content */,
 			);
 			path = EffectiveMobileTest;
@@ -237,10 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D78F4EE2942143D00BE80C7 /* Preview Assets.xcassets in Resources */,
-				2D78F4EB2942143D00BE80C7 /* Assets.xcassets in Resources */,
 				2D78F52229421C3C00BE80C7 /* MarkPro-Regular.ttf in Resources */,
 				2D78F52029421C3300BE80C7 /* SF-Pro-Display.OTF in Resources */,
 				2D78F52629421C4900BE80C7 /* MarkPro-Bold.ttf in Resources */,
+				2D192ECD294317C600E6F34C /* Assets.xcassets in Resources */,
 				2D78F52429421C4200BE80C7 /* MarkPro-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ struct LoadingPage: View {
     @State private var isActive = false
     @State private var opacity = 0.0
     @State var filterPresentation: Bool = false
+    @State var showLike: Bool = false
 
     var body: some View{
         if isActive {
@@ -29,7 +30,7 @@ struct LoadingPage: View {
                 }
 
                 NavigationView {
-                    TabBar(filterPresentation: $filterPresentation)
+                    TabBar(filterPresentation: $filterPresentation, showLike: $showLike)
                 }
             }
         } else {
@@ -86,9 +87,18 @@ struct TabBar: View{
     @Binding var filterPresentation: Bool
     @State var isPresentedCart: Bool = false
     @State var selectedIndex: Int = 0
-
-    init(filterPresentation: Binding<Bool>) {
+    
+    @Binding var showStrokeBorder: Bool
+    @Binding var showSplash: Bool
+    @Binding var showSplashTilted: Bool
+    @Binding var showHeart: Bool
+    
+    init(filterPresentation: Binding<Bool>, showLike: Binding<Bool>) {
         _filterPresentation = filterPresentation
+        _showStrokeBorder = showLike
+        _showSplash = showLike
+        _showSplashTilted = showLike
+        _showHeart = showLike
 
         UITabBar.appearance().isHidden = true
     }
@@ -96,7 +106,7 @@ struct TabBar: View{
 var body: some View {
     ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
             TabView(selection: $selectedIndex) {
-                HomePage(filterPresentation: $filterPresentation)
+                HomePage(filterPresentation: $filterPresentation, showStrokeBorder: $showStrokeBorder, showSplash: $showSplash, showSplashTilted: $showSplashTilted, showHeart: $showHeart, onTap: {print("Like")})
                     .ignoresSafeArea(.all, edges:.all)
                     .tag(0)
 
@@ -141,10 +151,10 @@ var body: some View {
 
                         Spacer()
                 }
-                .frame(width: 380, height: 72)
+                .frame(width: 400, height: 72)
                 .background(Color.mainDarkBlue)
                 .cornerRadius(30)
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             }
         }
     .padding(.top, 60)

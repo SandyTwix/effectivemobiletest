@@ -13,8 +13,14 @@
          @State private var isPresent: Bool = false
          @Binding var filterPresentation: Bool
          @State private var search: String = ""
-
-     @State var citiesList = false
+     
+         @Binding var showStrokeBorder: Bool
+         @Binding var showSplash: Bool
+         @Binding var showSplashTilted: Bool
+         @Binding var showHeart: Bool
+     
+     var onTap: () -> Void
+     
          let columns = [
              GridItem(.flexible()),
              GridItem(.flexible())
@@ -182,7 +188,6 @@
 
                          LazyVGrid(columns: columns, spacing: 20) {
                              ForEach(networkManager.shopModels.first?.bestSeller ?? [], id: \.id) { bestSeller in
-                                // sellerCard(bestSeller: bestSeller)
                                  NavigationLink {
                                      ProductCardPage()
                                  } label: {
@@ -200,16 +205,8 @@
                  networkManager.getData(){print("Getting Data")}
              }
          }
- }
-
- struct HomePage_Previews: PreviewProvider {
-     static var previews: some View {
-         HomePage(filterPresentation: .constant(false))
-     }
- }
-
- extension HomePage {
-     @ViewBuilder
+     
+     // MARK: Category Functions
      private func selectedCategory(category: SelectedCategory) -> some View {
          VStack {
              ZStack {
@@ -238,10 +235,9 @@
              networkManager.selectedCategory = category
          }
      }
- }
-
- extension HomePage {
-     @ViewBuilder
+     
+     
+     // MARK: Hot sales Scroll
      private func hotSalesScroll(data: HomeStore) -> some View {
          HStack {
              VStack(alignment: .leading) {
@@ -288,10 +284,8 @@
          )
          .padding()
      }
- }
-
- extension HomePage {
-     @ViewBuilder
+     
+     // MARK: Seller Card Functions
      private func sellerCard(bestSeller: BestSeller) -> some View {
          VStack(spacing: 0) {
              ZStack {
@@ -303,19 +297,49 @@
                      HStack() {
                          Spacer()
                          ZStack {
-
-                             Image(systemName: bestSeller.isFavorites! ? "heart.fill" : "heart")
-                                 .resizable()
-                                 .aspectRatio(contentMode: .fit)
-                                 .frame(height: 11)
+                             
+                             Image(systemName: "heart")
+                                 .frame(width: 26, height: 26)
                                  .foregroundColor(Color.mainOrange)
-                                 .background(
-                                     Circle()
-                                         .fill(.white)
-                                         .frame(width: 25, height: 25)
-                                         .shadow(color: .black.opacity(0.1), radius: 10)
-                                 )
+                                 .aspectRatio(contentMode: .fit)
+
+                             Circle() 
+                                 .strokeBorder(lineWidth: showStrokeBorder ? 1 : 35/2,
+                                               antialiased: false)
+                                 .opacity(showStrokeBorder ? 0 : 1)
+                                 .frame(width: 35, height: 35)
+                                 .foregroundColor(.purple)
+                                 .scaleEffect(showStrokeBorder ? 1 : 0)
+                                 .animation(Animation.easeInOut(duration: 0.5))
+
+                             Image("splash")
+                                             .resizable()
+                                             .aspectRatio(contentMode: .fit)
+                                             .opacity(showSplash ? 0 : 1)
+                                             .frame(width: 48, height: 48)
+                                             .scaleEffect(showSplash ? 1 : 0)
+                                             .animation(Animation.easeInOut(duration: 0.5).delay(0.1))
+
+                             Image("splash_tilted")
+                                             .resizable()
+                                             .aspectRatio(contentMode: .fit)
+                                             .opacity(showSplashTilted ? 0 : 1)
+                                             .frame(width: 50, height: 50)
+                                             .scaleEffect(showSplashTilted ? 1.1 : 0)
+                                             .scaleEffect(1.1)
+                                             .animation(Animation.easeOut(duration: 0.5).delay(0.1))
+
+                                         Image(systemName: "heart.fill")
+                                             .aspectRatio(contentMode: .fit)
+                                             .frame(width: 26, height: 26)
+                                             .foregroundColor(.pink)
+                                             .scaleEffect(showHeart ? 1.1 : 0)
+                                             .animation(Animation.interactiveSpring().delay(0.2))
                          }
+                         .onTapGesture() {
+                                     self.showHeart.toggle()
+                                     onTap()
+                                 }
                      }
                      .frame(maxWidth: .infinity)
                      Spacer()
@@ -355,4 +379,13 @@
                  .shadow(color: Color.black.opacity(0.1), radius: 12)
          )
      }
+     
  }
+
+ struct HomePage_Previews: PreviewProvider {
+     static var previews: some View {
+         HomePage(filterPresentation: .constant(false), showStrokeBorder: .constant(false), showSplash: .constant(false), showSplashTilted: .constant(false), showHeart: .constant(false), onTap: { print("Like")
+         })
+     }
+ }
+
